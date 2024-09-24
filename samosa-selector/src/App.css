@@ -12,6 +12,15 @@
   text-align: center;
 }
 
+.samosa:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+}
+
+.samosa:active {
+  transform: scale(0.95);
+}
+
 .container {
   margin-top: 50px;
   display: flex;
