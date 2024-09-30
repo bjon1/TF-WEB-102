@@ -55,6 +55,7 @@ const BaristaForm = () => {
     }
 
     const onCheckAnswer = () => {
+        console.log(trueRecipe)
         if (trueRecipe.temp != inputs['temperature']){
             setCheckedTemperature('wrong')
         }
@@ -117,7 +118,7 @@ const BaristaForm = () => {
                         }))}
                         label={ingredient}
                         choices={ingredients[ingredient]}
-                        checked={inputs[ingredient]}
+                        currentVal={inputs[ingredient]}
                     />
                 </div>
             ))}
