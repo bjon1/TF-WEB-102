@@ -4,8 +4,14 @@ import drinksJson from '../data/drinks.json';
 
 const BaristaForm = () => {
 
-    const [currentDrink, setCurrentDrink] = useState('');
-    const [trueRecipe, setTrueRecipe] = useState({});
+    const [currentDrink, setCurrentDrink] = useState('')
+    const [trueRecipe, setTrueRecipe] = useState({})
+
+    const [correct_temp, setCheckedTemperature] = useState('')
+    const [correct_syrup, setCheckedSyrup] = useState('')
+    const [correct_milk, setCheckedMilk] = useState('')
+    const [correct_blended, setCheckedBlended] = useState('')
+    
 
     const [inputs, setInputs] = useState({
         'temperature': '',
@@ -13,6 +19,13 @@ const BaristaForm = () => {
         'syrup': '',
         'blended': ''
     });
+
+    const ingredients_relationship = {
+        'temperature': correct_temp,
+        'syrup': correct_syrup,
+        'milk': correct_milk,
+        'blended': correct_blended
+    }
 
     const ingredients = {
         'temperature' : ['hot', 'lukewarm', 'cold'],
@@ -22,6 +35,10 @@ const BaristaForm = () => {
     }
 
     const onNewDrink = () => {
+        setCheckedTemperature('')
+        setCheckedSyrup('')
+        setCheckedMilk('')
+        setCheckedBlended('')
         setInputs({ // reset inputs
             'temperature': '',
             'milk': '',
@@ -38,7 +55,34 @@ const BaristaForm = () => {
     }
 
     const onCheckAnswer = () => {
-            
+        if (trueRecipe.temp != inputs['temperature']){
+            setCheckedTemperature('wrong')
+        }
+        else {
+            setCheckedTemperature("correct")
+        }
+
+        if (trueRecipe.syrup != inputs['syrup']){
+            setCheckedSyrup('wrong')
+        }
+        else {
+            setCheckedSyrup("correct")
+        }
+
+        if (trueRecipe.milk != inputs['milk']){
+            setCheckedMilk('wrong')
+        }
+        else {
+            setCheckedMilk("correct")
+        }
+
+        if (trueRecipe.blended != inputs['blended']){
+            setCheckedBlended('wrong')
+        }
+        else {
+            setCheckedBlended("correct")
+        }
+
     }
 
     return (
@@ -57,22 +101,26 @@ const BaristaForm = () => {
                 </button>
             </div>
             <form> 
-                <button            
-                    type="submit" 
-                    className="button submit"
-                    onClick={onCheckAnswer}
-                >Check Answer</button>
-                <button 
-                    type="button" 
-                    className="button submit"
-                    onClick={onNewDrink}
-                >New Drink</button>
+
             </form>
+            <button            
+                type="submit" 
+                className="button submit"
+                onClick={onCheckAnswer}
+            >Check Answer</button>
+            <button 
+                type="button" 
+                className="button submit"
+                onClick={onNewDrink}
+            >New Drink</button>
 
             {Object.keys(ingredients).map((ingredient) => (
                 <div key={ingredient}>
                     <h3>{ingredient.charAt(0).toUpperCase() + ingredient.slice(1)}</h3>
-                    <div className="answer-space">
+                    <div 
+                        className="answer-space"
+                        id={ingredients_relationship[ingredient]}
+                    >
                         {inputs[ingredient]} 
                     </div>
                     <RecipeChoices
