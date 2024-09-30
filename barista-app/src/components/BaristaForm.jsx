@@ -1,7 +1,11 @@
 import {Component, useState} from "react";
 import RecipeChoices from "./RecipeChoices";
+import drinksJson from '../data/drinks.json';
 
 const BaristaForm = () => {
+
+    const [currentDrink, setCurrentDrink] = useState('');
+    const [trueRecipe, setTrueRecipe] = useState({});
 
     const [inputs, setInputs] = useState({
         'temperature': '',
@@ -18,7 +22,19 @@ const BaristaForm = () => {
     }
 
     const onNewDrink = () => {
+        setInputs({ // reset inputs
+            'temperature': '',
+            'milk': '',
+            'syrup': '',
+            'blended': ''
+        })
+        getNextDrink() // get new drink
+    }
 
+    const getNextDrink = () => {
+        let randomDrinkIndex = Math.floor(Math.random() * drinksJson.drinks.length) // get random drink index
+        setCurrentDrink(drinksJson.drinks[randomDrinkIndex].name) // set current drink given random index
+        setTrueRecipe(drinksJson.drinks[randomDrinkIndex].ingredients) // set true recipe given random index
     }
 
     const onCheckAnswer = () => {
@@ -28,6 +44,18 @@ const BaristaForm = () => {
     return (
         <div>
             <h2>Hi, I'd like to order a:</h2>
+            <div className="drink-container">
+                <h2 className="mini-header">
+                    {currentDrink}
+                </h2>
+                <button 
+                    type="new-drink-button" 
+                    className="button newdrink"
+                    onClick={onNewDrink}
+                >
+                    🔄
+                </button>
+            </div>
             <form> 
                 <button            
                     type="submit" 
