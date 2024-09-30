@@ -4,7 +4,7 @@ import drinksJson from '../data/drinks.json';
 
 const BaristaForm = () => {
 
-    const [currentDrink, setCurrentDrink] = useState('')
+    const [currentDrink, setCurrentDrink] = useState(' ')
     const [trueRecipe, setTrueRecipe] = useState({})
 
     const [correct_temp, setCheckedTemperature] = useState('')
@@ -100,22 +100,9 @@ const BaristaForm = () => {
                     🔄
                 </button>
             </div>
-            <form> 
-
-            </form>
-            <button            
-                type="submit" 
-                className="button submit"
-                onClick={onCheckAnswer}
-            >Check Answer</button>
-            <button 
-                type="button" 
-                className="button submit"
-                onClick={onNewDrink}
-            >New Drink</button>
-
+            <form className="container">
             {Object.keys(ingredients).map((ingredient) => (
-                <div key={ingredient}>
+                <div key={ingredient} className='mini-container'>
                     <h3>{ingredient.charAt(0).toUpperCase() + ingredient.slice(1)}</h3>
                     <div 
                         className="answer-space"
@@ -134,6 +121,13 @@ const BaristaForm = () => {
                     />
                 </div>
             ))}
+            </form>
+            <button            
+                type="submit" 
+                className="button submit"
+                onClick={onCheckAnswer}
+            >Check Answer</button>
+           
         </div>
     );
   
