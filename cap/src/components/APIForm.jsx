@@ -12,7 +12,7 @@ const APIForm = ({inputs, handleChange, onSubmit}) => {
 
     return(
         <div>
-            <h2>Select Your Image Attributes</h2>
+            <h2 className="white">Select Your Image Attributes</h2>
             <form className="form-container">
                 {inputs &&
                     Object.entries(inputs).map(([category, value], index) => (
