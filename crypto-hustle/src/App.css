@@ -3,7 +3,6 @@
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
-  background-color: black;
 }
 
 .icons {
@@ -26,6 +25,20 @@ li.main-list {
 .whole-page {
   padding: 50px;
   text-align: center;
-  background-color: black;
   color: white;
+}
+
+.sideNav {
+  height: 100%;
+  width: 25%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  background-color: #232323;
+  padding: 15px 15px 10px 10px;
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
