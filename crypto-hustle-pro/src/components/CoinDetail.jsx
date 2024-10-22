@@ -8,6 +8,7 @@ const CoinDetail = () => {
     const [fullDetails, setFullDetails] = useState(null);
 
     useEffect(() => {
+        console.log("FETCHED")
         const getCoinDetail = async () => {
         const details = await fetch(
             `https://min-api.cryptocompare.com/data/pricemultifull?fsyms=${params.symbol}&tsyms=USD&api_key=` +
@@ -21,8 +22,8 @@ const CoinDetail = () => {
         const detailsJson = await details.json();
         const descripJson = await description.json();
 
-        console.log(detailsJson)
-        console.log(descripJson)
+        console.log("DETAILS", detailsJson)
+        console.log("DESCRIPTION", descripJson)
     
         setFullDetails({"numbers": detailsJson.DISPLAY, "textData": descripJson.Data});
         };
